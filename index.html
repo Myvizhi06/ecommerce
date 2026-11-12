@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeHub - Buy & Sell Marketplace</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="top-bar-container">
+      <span><i class="fa-solid fa-shield-halved"></i> 100% Buyer Protection & Zero Selling Fees! Free Shipping over $50</span>
+      <div class="top-links">
+        <a href="#sellSection" id="topSellLink"><i class="fa-solid fa-store"></i> Become a Seller</a>
+        <a href="#"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand" id="brandLogo">
+        <div class="brand-badge">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </div>
+        <span class="brand-text">Trade<span>Hub</span></span>
+      </a>
+
+      <!-- Search Input -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search electronics, fashion, cameras, shoes..." />
+        <button id="clearSearchBtn" class="clear-search" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Action Buttons (Sell, Wishlist, Cart) -->
+      <div class="nav-actions">
+        <!-- Prominent Sell Item Button -->
+        <button class="btn btn-sell" id="openSellModalBtn" title="List an item for sale">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Sell Item</span>
+        </button>
+
+        <button class="nav-icon-btn" id="wishlistToggleBtn" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge" id="wishlistBadge">0</span>
+        </button>
+
+        <button class="nav-icon-btn cart-toggle" id="openCartBtn" title="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <i class="fa-solid fa-bolt"></i>
+          <span>The Next-Gen Buying & Selling Marketplace</span>
+        </div>
+        <h1 class="hero-title">
+          Buy Great Finds. <br />
+          <span class="gradient-text">Sell What You Don't Need.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Join thousands of buyers and sellers trading verified electronics, fashion, collectibles, and home goods with instant escrow protection.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#marketplace" class="btn btn-primary">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Browse Deals (Buy)</span>
+          </a>
+          <button class="btn btn-outline" id="heroSellBtn">
+            <i class="fa-solid fa-tag"></i>
+            <span>List an Item (Sell)</span>
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <strong>25,000+</strong>
+            <span>Active Listings</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <strong>$0</strong>
+            <span>Listing Fee</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <strong>4.9 / 5</strong>
+            <span>Verified Trust Score</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-banner-visual">
+        <div class="hero-card-preview">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" alt="Featured Product" class="preview-img" />
+          <div class="preview-tag">🔥 Trending Deal</div>
+          <div class="preview-info">
+            <h4>Sony WH-1000XM5 Wireless</h4>
+            <div class="preview-price-row">
+              <span class="price">$279.00</span>
+              <span class="original-price">$399.00</span>
+              <span class="condition-badge">Like New</span>
+            </div>
+            <small>Sold by Marcus V. · ⭐ 4.9 (84 reviews)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETPLACE CONTROLS & CATEGORIES -->
+  <section class="marketplace-section" id="marketplace">
+    <div class="section-container">
+      <div class="section-top-bar">
+        <div>
+          <h2 class="section-heading">Explore Marketplace</h2>
+          <p class="section-subheading">Verified listings from authentic sellers</p>
+        </div>
+
+        <div class="filter-controls">
+          <!-- Sort Dropdown -->
+          <div class="sort-wrapper">
+            <label for="sortSelect">Sort by:</label>
+            <select id="sortSelect">
+              <option value="featured">Featured First</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Top Seller Rating</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryTabs">
+        <button class="pill active" data-category="all">
+          <i class="fa-solid fa-shapes"></i> All Items
+        </button>
+        <button class="pill" data-category="electronics">
+          <i class="fa-solid fa-laptop"></i> Electronics
+        </button>
+        <button class="pill" data-category="fashion">
+          <i class="fa-solid fa-shirt"></i> Fashion & Apparel
+        </button>
+        <button class="pill" data-category="home">
+          <i class="fa-solid fa-couch"></i> Home & Living
+        </button>
+        <button class="pill" data-category="sports">
+          <i class="fa-solid fa-bicycle"></i> Sports & Outdoors
+        </button>
+        <button class="pill" data-category="gadgets">
+          <i class="fa-solid fa-camera"></i> Cameras & Gaming
+        </button>
+      </div>
+
+      <!-- Active Filter Banner (for search query) -->
+      <div class="search-feedback-banner" id="searchFeedbackBanner" style="display: none;">
+        <span>Showing results for: <strong id="searchFeedbackText"></strong></span>
+        <button id="resetSearchBtn" class="btn-reset-search">Clear Search <i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Dynamically injected via script.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <i class="fa-solid fa-box-open"></i>
+        <h3>No products found</h3>
+        <p>Try searching for a different keyword or be the first to sell this item!</p>
+        <button class="btn btn-primary" id="emptyStateSellBtn">Sell an item now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELLER PERKS BANNER -->
+  <section class="seller-banner" id="sellSection">
+    <div class="section-container">
+      <div class="seller-banner-card">
+        <div class="seller-content">
+          <span class="pill-accent">Start Selling Today</span>
+          <h2>Got Items Gathering Dust? Turn Them Into Cash.</h2>
+          <p>List your product in less than 60 seconds with zero listing fees. Reach thousands of verified local and nationwide buyers safely.</p>
+          <div class="seller-features">
+            <div class="feature"><i class="fa-solid fa-check"></i> 0% Listing Commission</div>
+            <div class="feature"><i class="fa-solid fa-check"></i> Prepaid Shipping Labels</div>
+            <div class="feature"><i class="fa-solid fa-check"></i> Instant Escrow Payouts</div>
+          </div>
+          <button class="btn btn-primary btn-large" id="bannerSellBtn">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Post a Listing Now</span>
+          </button>
+        </div>
+        <div class="seller-illustration">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-badge"><i class="fa-solid fa-arrows-rotate"></i></div>
+          <span class="brand-text">Trade<span>Hub</span></span>
+        </div>
+        <p>The trusted marketplace to buy and sell authentic electronics, fashion, and everyday essentials safely.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Buying on TradeHub</h4>
+        <ul>
+          <li><a href="#marketplace">Browse All Deals</a></li>
+          <li><a href="#">Buyer Protection Policy</a></li>
+          <li><a href="#">Shipping & Tracking</a></li>
+          <li><a href="#">Return Guarantee</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Selling on TradeHub</h4>
+        <ul>
+          <li><a href="#sellSection">How to Sell</a></li>
+          <li><a href="#">Seller Verification</a></li>
+          <li><a href="#">Shipping Guidelines</a></li>
+          <li><a href="#">Payout Schedule</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Stay Updated</h4>
+        <p>Subscribe for newly listed high-demand products and discount drops.</p>
+        <form class="subscribe-form" id="subscribeForm">
+          <input type="email" placeholder="Your email address" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 TradeHub Marketplace Inc. Built with HTML, CSS, and Vanilla JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- SELL AN ITEM MODAL (FOR SELLERS) -->
+  <div class="modal-backdrop" id="sellModalBackdrop" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeSellModalBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="modal-header">
+        <div class="modal-icon-badge"><i class="fa-solid fa-tag"></i></div>
+        <div>
+          <h3>List an Item for Sale</h3>
+          <p>Fill out the details below to publish your item to the marketplace.</p>
+        </div>
+      </div>
+
+      <form id="sellItemForm" class="modal-form">
+        <div class="form-group">
+          <label for="itemTitle">Product Title *</label>
+          <input type="text" id="itemTitle" placeholder="e.g. Apple MacBook Air M2 - 16GB RAM" required maxlength="80" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="itemCategory">Category *</label>
+            <select id="itemCategory" required>
+              <option value="electronics">Electronics</option>
+              <option value="fashion">Fashion & Apparel</option>
+              <option value="home">Home & Living</option>
+              <option value="sports">Sports & Outdoors</option>
+              <option value="gadgets">Cameras & Gaming</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="itemCondition">Condition *</label>
+            <select id="itemCondition" required>
+              <option value="Brand New">Brand New (Sealed)</option>
+              <option value="Like New">Like New (Mint)</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Good">Good (Minor wear)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="itemPrice">Selling Price ($) *</label>
+            <input type="number" id="itemPrice" placeholder="e.g. 149.00" min="1" step="0.01" required />
+          </div>
+
+          <div class="form-group">
+            <label for="itemLocation">Seller City / State *</label>
+            <input type="text" id="itemLocation" placeholder="e.g. Austin, TX" required />
+          </div>
+        </div>
+
+        <!-- Image Upload or URL -->
+        <div class="form-group">
+          <label>Product Image *</label>
+          <div class="image-upload-box">
+            <label for="itemImageFile" class="file-drop-area">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <span>Click to upload an image from your device</span>
+              <input type="file" id="itemImageFile" accept="image/*" hidden />
+            </label>
+            <div class="or-separator">or paste image URL</div>
+            <input type="url" id="itemImageUrl" placeholder="https://images.unsplash.com/..." />
+          </div>
+          <div class="image-preview-container" id="sellImagePreviewContainer" style="display: none;">
+            <img id="sellImagePreview" src="" alt="Listing preview" />
+            <button type="button" class="btn-remove-preview" id="removeSellImageBtn"><i class="fa-solid fa-trash-can"></i> Remove</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="itemDescription">Description *</label>
+          <textarea id="itemDescription" rows="3" placeholder="Describe the item condition, accessories included, and reason for selling..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="sellerName">Your Name / Handle *</label>
+          <input type="text" id="sellerName" placeholder="e.g. Alex Morgan" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit-listing">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Publish Listing to Marketplace</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SLIDING DRAWER -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Your Shopping Bag</h3>
+        <span class="drawer-counter" id="drawerCartCount">0 items</span>
+      </div>
+      <button class="close-drawer-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Injected dynamically via script.js -->
+    </div>
+
+    <div class="cart-summary" id="cartSummary">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotalVal">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Shipping</span>
+        <span id="shippingVal">$4.99</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Tax (8%)</span>
+        <span id="taxVal">$0.00</span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span id="totalVal">$0.00</span>
+      </div>
+
+      <button class="btn btn-primary btn-checkout" id="checkoutBtn">
+        <span>Proceed to Secure Checkout</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-backdrop" id="checkoutModalBackdrop" style="display: none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div id="checkoutFormStep">
+        <div class="modal-header">
+          <div class="modal-icon-badge"><i class="fa-solid fa-lock"></i></div>
+          <div>
+            <h3>Secure Escrow Checkout</h3>
+            <p>Your payment is safely held until you receive and verify the item.</p>
+          </div>
+        </div>
+
+        <form id="checkoutForm" class="modal-form">
+          <div class="form-group">
+            <label for="buyerName">Full Name</label>
+            <input type="text" id="buyerName" placeholder="e.g. Sarah Jenkins" required />
+          </div>
+          <div class="form-group">
+            <label for="buyerAddress">Shipping Address</label>
+            <input type="text" id="buyerAddress" placeholder="Street Address, Apt, City, Zip Code" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="buyerEmail">Email for Tracking</label>
+              <input type="email" id="buyerEmail" placeholder="sarah@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="buyerPhone">Phone</label>
+              <input type="tel" id="buyerPhone" placeholder="+1 (555) 000-0000" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <div class="payment-selection">
+              <label class="pay-option">
+                <input type="radio" name="payMethod" value="card" checked />
+                <span><i class="fa-regular fa-credit-card"></i> Card</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="payMethod" value="applepay" />
+                <span><i class="fa-brands fa-apple"></i> Apple Pay</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="payMethod" value="paypal" />
+                <span><i class="fa-brands fa-paypal"></i> PayPal</span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit-listing">Confirm & Pay Order</button>
+        </form>
+      </div>
+
+      <!-- Order Confirmed Step -->
+      <div id="checkoutSuccessStep" style="display: none;">
+        <div class="success-box">
+          <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h2>Payment Authorized!</h2>
+          <p class="order-id">Escrow Order ID: <strong id="orderIdText">TH-78419</strong></p>
+          <p class="success-info">The seller has been notified to pack your order. Your funds are secured under TradeHub Escrow Buyer Protection until delivery is confirmed.</p>
+          <button class="btn btn-primary" id="continueShoppingBtn">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
